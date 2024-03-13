@@ -41,9 +41,7 @@ namespace Assignment.Controllers
         public async Task<IActionResult> GetAllProducts()
         {
             var respone = await _productService.GetAllProducts();
-            if (respone.IsSucceded)
-                return Ok(respone);
-            return BadRequest(respone);
+            return respone.IsSucceded ? Ok(respone) : BadRequest(respone);
         }
         [HttpGet("GetProductById")]
         public async Task<IActionResult> GetProductById([FromQuery] int id)
