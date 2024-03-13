@@ -1,0 +1,36 @@
+<!-- admin-products.component.html -->
+
+<div class="d-grid gap-2 col-6 mx-auto m-b-12">
+  <button
+  
+    color="primary"
+    routerLink="/Addproduct"
+    class="btn btn-outline-success btn-lg"
+  >
+    Add New Product 
+  </button></div>
+
+<table  class="table table-bordered text-center">
+    <thead >
+    <tr class="table-active">
+      <th>Product Name</th>
+      <th>Price</th>
+      <th>minimum Quantity</th>
+        <th>Discount Rate</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody >
+    <tr *ngFor="let product of products">
+      <td>{{ product.name }}</td>
+      <td>{{ product.price }}</td>
+      <td>{{ product.minimumQuantity }}</td>
+      <td>{{ product.discountRate }}</td>
+      <td>
+        
+        <button (click)="editProduct(product.id)" class="btn btn-primary ms-2">Edit</button> 
+        <button (click)="deleteProduct(product.id)" class="btn btn-danger ms-2">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

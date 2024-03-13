@@ -1,0 +1,78 @@
+<div class="blank-layout-container justify-content-center align-items-center bg-light-primary">
+    <div class="position-relative row w-100 h-100 bg-gredient justify-content-center">
+<div>
+    <h1 class="text-center">Edit product</h1>
+</div>
+<div class="d-flex justify-content-center">
+
+<div class="w-50 ">
+<form class="container" [formGroup]="EditPrdFrm" (ngSubmit)="EditProduct()" enctype="multipart/form-data">
+  <div >
+      <label>Name</label>
+      <input type="text" class="form-control form-control-lg" 
+      formControlName="name" [(ngModel)]="products.name"
+      >
+      <!--  [value]="products?.name" -->
+  </div> 
+  <br>  
+  <div >
+      <label>price</label>
+      <input type="number" [(ngModel)]="products.price" class="form-control" formControlName="price"
+       
+      >
+      <!-- [value]="products?.price"   -->
+  </div>  
+  <br>
+  <div >
+    <label>discountRate</label>
+    <input type="number" class="form-control" formControlName="discountRate" 
+    [(ngModel)]="products.discountRate"
+    >
+    <!-- [value]="products?.discountRate" -->
+</div>  
+
+  <br>
+  <div >
+    <label>minimumQuantity</label>
+    <input type="number" class="form-control" [(ngModel)]="products.minimumQuantity"
+     formControlName="minimumQuantity" 
+    >
+</div>  
+<!-- [value]="products?.minimumQuantity" -->
+<br>
+<div >
+    <label>Category</label>
+    <select class="form-control"  formControlName="category_Id" >
+    <option value="{{products.category.id}}" selected>{{products.category.name}}</option>
+    <option *ngFor="let cat of categories" value="{{cat.id}}">{{cat.name}}</option>
+    </select>
+</div>  
+<br>
+  <div >
+      <label>productImage</label>
+       <input type="file" 
+        (change)="onFileChange($event)" name="image" accept="image/*"/> 
+       <div class="col-sm-6 col-lg-3" [hidden]="!imageValue">
+        <mat-card class="cardWithShadow products overflow-hidden" > 
+          <a routerLink="/widgets/cards">
+            <img 
+              [src]="srcImage"
+              alt="imgSrc"
+              class="w-75"
+              mat-card-image
+            />
+          </a>
+        </mat-card>
+        </div>
+    </div>
+ <br>
+ 
+  <div class="mb-3">
+      <button type="submit"  [disabled]="!EditPrdFrm.valid" style="background-color: rgb(7, 161, 89);color: black;"
+         class="btn btn-primary form-control">update Product</button>
+  </div>
+</form>
+</div>
+</div>
+</div>
+</div>

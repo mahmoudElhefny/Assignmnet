@@ -1,0 +1,78 @@
+<div class="blank-layout-container justify-content-center align-items-center bg-light-primary">
+  <div class="position-relative row w-100 h-100 bg-gredient justify-content-center">
+<div>
+    <h1 class="text-center">Add new product</h1>
+</div>
+
+<div class="d-flex justify-content-center">
+
+<div class="w-50 ">
+    <div *ngIf="errorMessages!=null">
+        <ol *ngFor="let errorMessage of errorMessages;let indexOfelement=index;">
+          <li>
+            <small style="color: red;font-size: 20px;font-weight: bold;">
+            {{errorMessage.errorMessage}}
+          </small></li>
+        </ol>   
+        </div>
+<form class="container" [formGroup]="AddPrdFrm" (ngSubmit)="AddProducts()" enctype="multipart/form-data">
+  <div >
+      <label>Name</label>
+      <input type="text" class="form-control is-valid" formControlName="name"
+      [ngClass]="{'is-invalid': fbv['name'].errors && fbv['name'].touched, 
+      'is-valid': !fbv['name'].errors && fbv['name'].touched }"
+      >
+  </div> 
+  <br>  
+  <div >
+      <label>price</label>
+      <input type="number" class="form-control" formControlName="price"
+      [ngClass]="{'is-invalid': fbv['price'].errors && fbv['price'].touched, 
+      'is-valid': !fbv['price'].errors && fbv['price'].touched }"
+      >
+  </div>  
+  <br>
+  <div >
+    <label>discountRate</label>
+    <input type="number" class="form-control" formControlName="discountRate"
+    [ngClass]="{'is-invalid': fbv['discountRate'].errors && fbv['discountRate'].touched,
+     'is-valid': !fbv['discountRate'].errors && fbv['discountRate'].touched }"
+    >
+</div>  
+  <br>
+  <div >
+    <label>minimumQuantity</label>
+    <input type="number" class="form-control" formControlName="minimumQuantity"
+    [ngClass]="{'is-invalid': fbv['minimumQuantity'].errors && fbv['minimumQuantity'].touched,
+     'is-valid': !fbv['minimumQuantity'].errors && fbv['minimumQuantity'].touched }"
+
+    >
+</div>  
+<br>
+    <div >
+        <label>Category</label>
+        <select class="form-control" formControlName="category_Id" 
+        [ngClass]="{'is-invalid': fbv['category_Id'].errors && fbv['category_Id'].touched,
+         'is-valid': !fbv['category_Id'].errors && fbv['category_Id'].touched }"
+        >
+        <!-- <option disabled>اختر من فضلك</option> -->
+            <option disabled value="0">Choose Product Category</option>
+            <option *ngFor="let cat of categories" value="{{cat.id}}">{{cat.name}}</option>
+        </select>
+    </div>  
+  <br>
+  <div >
+    <label>productImage</label>
+     <input  type="file" name="profile" (change)="onFileChange($event)"
+      name="image" accept="image/*"/> 
+    </div>  
+<br>
+  <div class="mb-3">
+      <input [disabled]="!AddPrdFrm.valid" type="submit" style="background-color: aqua;" value="Add New Product"
+       class="form-control">
+  </div>
+</form>
+</div>
+</div>
+</div>
+</div>

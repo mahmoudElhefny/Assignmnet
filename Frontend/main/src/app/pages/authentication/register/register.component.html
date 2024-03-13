@@ -1,0 +1,68 @@
+<div class="blank-layout-container justify-content-center align-items-center bg-light-primary">
+  <div
+    class="position-relative row w-100 h-100 bg-gredient justify-content-center"
+  >
+    <div class="col-lg-4 d-flex align-items-center">
+      <mat-card class="cardWithShadow boxed-auth">
+        <mat-card-content class="p-32">
+
+
+          <form [formGroup]="registerForm" class="m-t-30">
+            <mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block"
+              >userName</mat-label
+            >
+            <mat-form-field appearance="outline" class="w-100" color="primary">
+              <input matInput formControlName="userName">
+            </mat-form-field>
+            <mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block"
+              >Email Adddress</mat-label
+            >
+            <mat-form-field appearance="outline" class="w-100" color="primary">
+              <input matInput type="email" formControlName="emailAddress"/>
+            </mat-form-field>
+            <!-- password -->
+            <mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block"
+              >Password</mat-label
+            >
+            <mat-form-field appearance="outline" class="w-100" color="primary">
+              <input matInput type="password" formControlName="password"/>
+            </mat-form-field>
+            <!--Confirm password -->
+            <mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block"
+            >Confirm Password</mat-label
+          >
+          <mat-form-field appearance="outline" class="w-100" color="primary">
+            <input matInput type="password" formControlName="confirmPassword"/>
+          </mat-form-field>
+          <div class="alert alert-warning" *ngIf="registerForm?.errors?.['UnmatchedPassword']">
+            <small  style="color: red;">
+              confirmpassword must match password
+            </small>
+          </div>
+          <br>
+            <button [disabled]="!registerForm.valid" (click)="Register()" mat-flat-button color="primary" class="w-100">Sign Up</button>
+            <!-- input -->
+          </form>
+          <div *ngIf="errorMessages!=null">
+            <ol *ngFor="let errorMessage of errorMessages;let indexOfelement=index;">
+              <li>
+                <small style="color: red;font-size: 20px;font-weight: bold;">
+                {{errorMessage.errorMessage}}
+              </small></li>
+            </ol>   
+            </div>
+          <span class="d-block f-w-500 text-center m-t-24"
+            >Already have an Account?
+
+            <a
+              [routerLink]="['/authentication/login']"
+              class="text-decoration-none text-primary f-w-500 f-s-14"
+            >
+              Sign In</a
+            >
+          </span>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>
